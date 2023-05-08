@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 
 services:
 
@@ -7,12 +7,16 @@ services:
     container_name: webapp
     restart: always
     expose:
-      -8000
-
+      - 8000
+    volumes:
+      - /run/uwsgi:/run/uwsgi
   nginx:
     build: ./nginx
     container_name: nginx
     restart: always
     ports:
-      -"80:80"    
- 
+      - "80:80"
+    volumes:
+      - /run/uwsgi:/run/uwsgi
+
+
